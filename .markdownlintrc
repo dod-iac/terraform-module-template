@@ -1,0 +1,18 @@
+{
+  "default": true,
+  "first-header-h1": false,
+  "first-line-h1": false,
+  "line_length": false,
+  "no-multiple-blanks": false,
+  "fenced-code-language": true,
+  "no-inline-html": {
+    "allowed_elements": ["br", "pre"]
+  },
+  "no-duplicate-header": {
+    "siblings_only": true
+  },
+  "code-block-style": {
+    "style": "fenced"
+  },
+  "single-trailing-newline": false
+}

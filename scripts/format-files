@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+readonly DIR
+
+if ! command -v terraform > /dev/null; then
+  echo "terraform is missing."
+  exit 1
+fi
+
+terraform fmt "${DIR}/.."
