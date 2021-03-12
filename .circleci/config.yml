@@ -1,6 +1,6 @@
 version: '2.1'
 
-orgs:
+orbs:
   terraform: circleci/terraform@1.2.0
 
 executors:
