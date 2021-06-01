@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - terraform/install:
-        terraform_version: 0.13.5
+        terraform_version: 0.13.7
       - run:
           name: "Download and install terraform-docs"
           command: |
@@ -28,7 +28,7 @@ jobs:
             chmod 755 terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64
             mv terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 ~/bin/terraform-docs
           environment:
-            TERRAFORM_DOCS_VERSION: "0.12.1"
+            TERRAFORM_DOCS_VERSION: "0.14.0"
       - run:
           name: "Download and install go"
           command: |

@@ -17,10 +17,6 @@ import (
 
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
 func TestTerraformSimpleExample(t *testing.T) {
@@ -29,7 +25,7 @@ func TestTerraformSimpleExample(t *testing.T) {
 	region := os.Getenv("AWS_DEFAULT_REGION")
 	require.NotEmpty(t, region, "missing environment variable AWS_DEFAULT_REGION")
 
-	testName := fmt.Sprintf("terratest-module-template-simple-%s", strings.ToLower(random.UniqueId()))
+	testName := fmt.Sprintf("terratest-terraform-module-template-simple-%s", strings.ToLower(random.UniqueId()))
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../examples/simple",
@@ -52,7 +48,7 @@ func TestTerraformSimpleExample(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	testName := terraform.Output(t, terraformOptions, "test_name")
+	outputTestName := terraform.Output(t, terraformOptions, "test_name")
 
-	require.NotNil(t, testName)
+	require.Equal(t, outputTestName, testName)
 }
