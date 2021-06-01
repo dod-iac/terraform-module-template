@@ -22,11 +22,11 @@ jobs:
             set -euo pipefail
             cd ~
             mkdir -p ~/bin
-            curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64
+            curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
             curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}.sha256sum
-            [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 | cut -f1 -d' ') = $(grep linux-amd64 terraform-docs-v${TERRAFORM_DOCS_VERSION}.sha256sum | grep -v tar.gz | cut -f1 -d' ') ]
-            chmod 755 terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64
-            mv terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 ~/bin/terraform-docs
+            [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz | cut -f1 -d' ') = $(grep linux-amd64 terraform-docs-v${TERRAFORM_DOCS_VERSION}.sha256sum | cut -f1 -d' ') ]
+            tar -xf terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
+            mv terraform-docs ~/bin/terraform-docs
           environment:
             TERRAFORM_DOCS_VERSION: "0.14.0"
       - run:
