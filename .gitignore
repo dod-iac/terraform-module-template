@@ -1,5 +1,8 @@
+bin
+.envrc.local
 .DS_Store
 .terraform
+.terraform-version
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfstate.*.backup
