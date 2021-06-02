@@ -22,4 +22,4 @@ if ! command -v terraform > /dev/null; then
   exit 1
 fi
 
-go test -short -count 1 -timeout 15m -run TestTerraformSimpleExample "${DIR}/../test/..."
+go test -short -count 1 -timeout 15m "${DIR}/../test/..."
