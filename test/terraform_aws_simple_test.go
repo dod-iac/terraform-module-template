@@ -29,7 +29,7 @@ func TestTerraformSimpleExample(t *testing.T) {
 	// If AWS_DEFAULT_REGION environment variable is not set, then fail the test.
 	require.NotEmpty(t, region, "missing environment variable AWS_DEFAULT_REGION")
 
-  // Append a random suffix to the test name, so individual test runs are unique.
+	// Append a random suffix to the test name, so individual test runs are unique.
 	// When the test runs again, it will use the existing terraform state,
 	// so it should override the existing infrastructure.
 	testName := fmt.Sprintf("terratest-terraform-module-template-simple-%s", strings.ToLower(random.UniqueId()))
@@ -54,18 +54,18 @@ func TestTerraformSimpleExample(t *testing.T) {
 		},
 	})
 
-  // If TT_SKIP_DESTROY is set to "1" then do not destroy the intrastructure,
+	// If TT_SKIP_DESTROY is set to "1" then do not destroy the intrastructure,
 	// at the end of the test run
 	if os.Getenv("TT_SKIP_DESTROY") != "1" {
 		defer terraform.Destroy(t, terraformOptions)
 	}
 
-  // InitAndApply runs "terraform init" and then "terraform apply"
+	// InitAndApply runs "terraform init" and then "terraform apply"
 	terraform.InitAndApply(t, terraformOptions)
 
-  // Retrieve some trivial output from the terrafrom test run
+	// Retrieve some trivial output from the terrafrom test run
 	outputTestName := terraform.Output(t, terraformOptions, "test_name")
 
-  // Test that the output is what is expected.
+	// Test that the output is what is expected.
 	require.Equal(t, outputTestName, testName)
 }
