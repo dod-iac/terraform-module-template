@@ -9,6 +9,7 @@
  * 1. Write your terraform code in the root dir.
  * 1. Ensure you've completed the [Developer Setup](#developer-setup).
  * 1. In the root dir, run `go mod init MODULE_NAME` to get a new `go.mod` file. Then run `go mod tidy`. This creates a new `go.sum` file and imports the dependencies and checksums specific to your repository.
+ * 1. Update the terratest tests in the examples and test directories.
  * 1. Run your tests to ensure they work as expected using instructions below.
  *
  * ---
@@ -42,8 +43,7 @@
  *
  * ## Testing
  *
- * Run tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION` environment variable is required by the tests.  Use `TT_SKIP_DESTROY=1` to not destroy the infrastructure created during the tests.
- *
+ * Run all terratest tests using the `terratest` script.  If using `aws-vault`, you could use `aws-vault exec $AWS_PROFILE -- terratest`.  The `AWS_DEFAULT_REGION` environment variable is required by the tests.  Use `TT_SKIP_DESTROY=1` to not destroy the infrastructure created during the tests.  The go test command can be executed directly, too.
  *
  * ## Terraform Version
  *
