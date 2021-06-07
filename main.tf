@@ -8,9 +8,9 @@
  * 1. Clone this repo, renaming appropriately.
  * 1. Write your terraform code in the root dir.
  * 1. Ensure you've completed the [Developer Setup](#developer-setup).
- * 1. In the root dir, run `go mod init MODULE_NAME` to get a new `go.mod` file. Then run `go mod tidy`. This creates a new `go.sum` file and imports the dependencies and checksums specific to your repository.
+ * 1. In the root dir, modify the `module` line for the repo path. Then run `make tidy`, which updates the `go.sum` file and downloads dependencies.
  * 1. Update the terratest tests in the examples and test directories.
- * 1. Run your tests to ensure they work as expected using instructions below.
+ * 1. Run your terratest tests to ensure they work as expected using instructions below.
  *
  * ---
  *
@@ -57,16 +57,21 @@
  *
  * ## Developer Setup
  *
- * Install dependencies (macOS)
+ * This template is configured to use aws-vault, direnv, go, pre-commit, terraform-docs, and tfenv.  If using Homebrew on macOS, you can install the dependencies using the following code.
  *
  * ```shell
- * brew install pre-commit terraform terraform-docs
+ * brew install aws-vault direnv go pre-commit tfenv terraform-docs
  * pre-commit install --install-hooks
  * ```
+ *
+ * If using `direnv`, add a `.envrc.local` that sets the default AWS region, e.g., `export AWS_DEFAULT_REGION=us-west-2`.
+ *
+ * If using `tfenv`, then add a `.terraform-version` to the project root dir, with the version you would like to use.
+ *
  *
  */
 
 data "aws_caller_identity" "current" {}
-# data "aws_iam_account_alias" "current" {}
+data "aws_iam_account_alias" "current" {}
 data "aws_partition" "current" {}
 data "aws_region" "current" {}

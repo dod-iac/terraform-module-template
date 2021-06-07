@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - terraform/install:
-        terraform_version: 0.13.7
+          terraform_version: 0.13.7
       - run:
           name: "Download and install terraform-docs"
           command: |

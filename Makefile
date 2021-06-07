@@ -30,7 +30,7 @@ fmt:  ## Format Go source code
 
 .PHONY: imports
 imports: bin/goimports ## Update imports in Go source code
-	bin/goimports -w -local github.com/gruntwork-io/terratest,github.com/aws/aws-sdk-go,github.com/dod-iac,github.com/dod-iac/terraform-module-template $$(find . -iname '*.go')
+	bin/goimports -w -local github.com/gruntwork-io/terratest,github.com/aws/aws-sdk-go,github.com/dod-iac $$(find . -iname '*.go')
 
 .PHONY: test_go
 lint_go: bin/errcheck bin/ineffassign bin/staticcheck bin/shadow ## Run Go tests
