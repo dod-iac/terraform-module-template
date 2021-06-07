@@ -60,9 +60,6 @@ bin/errcheck:
 bin/goimports:
 	go build -o bin/goimports golang.org/x/tools/cmd/goimports
 
-bin/gox:
-	go build -o bin/gox github.com/mitchellh/gox
-
 bin/ineffassign:
 	go build -o bin/ineffassign github.com/gordonklaus/ineffassign
 
