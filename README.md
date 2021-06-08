@@ -64,9 +64,9 @@ brew install aws-vault direnv go pre-commit tfenv terraform-docs
 pre-commit install --install-hooks
 ```
 
-If using `tfenv`, then add a `.terraform-version` to the project root dir, with the correct version.
-
 If using `direnv`, add a `.envrc.local` that sets the default AWS region, e.g., `export AWS_DEFAULT_REGION=us-west-2`.
+
+If using `tfenv`, then add a `.terraform-version` to the project root dir, with the version you would like to use.
 
 ## Requirements
 
