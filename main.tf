@@ -60,7 +60,7 @@
  * This template is configured to use aws-vault, direnv, go, pre-commit, terraform-docs, and tfenv.  If using Homebrew on macOS, you can install the dependencies using the following code.
  *
  * ```shell
- * brew install aws-vault direnv go pre-commit tfenv terraform-docs
+ * brew install aws-vault direnv go pre-commit terraform-docs tfenv
  * pre-commit install --install-hooks
  * ```
  *
