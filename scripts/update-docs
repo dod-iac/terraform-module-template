@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# =================================================================
+#
+# Work of the U.S. Department of Defense, Defense Digital Service.
+# Released as open source under the MIT License.  See LICENSE file.
+#
+# =================================================================
+
 set -eu -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -17,3 +24,16 @@ cat README.md >> TMP_README.md
 echo "<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> TMP_README.md
 mv TMP_README.md README.md
 popd  > /dev/null
+
+for state in ${DIR}/../examples/*
+do
+  if [ -d "${state}" ] && [ -f "${state}/main.tf" ]; then
+    pushd "${state}"
+    terraform-docs markdown . > README.md
+    echo "<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> TMP_README.md
+    cat README.md >> TMP_README.md
+    echo "<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> TMP_README.md
+    mv TMP_README.md README.md
+    popd > /dev/null
+  fi
+done
