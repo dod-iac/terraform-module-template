@@ -30,7 +30,7 @@ fmt:  ## Format Go source code
 
 .PHONY: imports
 imports: bin/goimports ## Update imports in Go source code
-	bin/goimports -w -local github.com/gruntwork-io/terratest,github.com/aws/aws-sdk-go,github.com/dod-iac $$(find . -iname '*.go')
+	bin/goimports -w -local github.com/dod-iac $$(find . -iname '*.go')
 
 .PHONY: test_go
 lint_go: bin/errcheck bin/ineffassign bin/staticcheck bin/shadow ## Run Go tests
@@ -54,20 +54,23 @@ terratest: ## Run terratest tests
 # Command line Programs
 #
 
-bin/errcheck:
+bin/errcheck: ## Make go binary errcheck
 	go build -o bin/errcheck github.com/kisielk/errcheck
 
-bin/goimports:
+bin/goimports: ## Make go binary goimports
 	go build -o bin/goimports golang.org/x/tools/cmd/goimports
 
-bin/ineffassign:
+bin/ineffassign: ## Make go binary ineffassign
 	go build -o bin/ineffassign github.com/gordonklaus/ineffassign
 
-bin/staticcheck:
+bin/staticcheck: ## Make go binary staticcheck
 	go build -o bin/staticcheck honnef.co/go/tools/cmd/staticcheck
 
-bin/shadow:
+bin/shadow: ## Make go binary shadow
 	go build -o bin/shadow golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
+
+.PHONY: tools ## Install all binary tools
+tools: bin/errcheck bin/goimports bin/ineffassign bin/staticcheck bin/shadow
 
 ## Clean
 
