@@ -46,6 +46,7 @@ jobs:
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
       - run: make update_docs
       - run: make format_terraform
+      - run: make imports
       - run: make tidy
       - run: make lint_go
       - run: git diff --exit-code
