@@ -54,20 +54,23 @@ terratest: ## Run terratest tests
 # Command line Programs
 #
 
-bin/errcheck:
+bin/errcheck: ## Make go binary errcheck
 	go build -o bin/errcheck github.com/kisielk/errcheck
 
-bin/goimports:
+bin/goimports: ## Make go binary goimports
 	go build -o bin/goimports golang.org/x/tools/cmd/goimports
 
-bin/ineffassign:
+bin/ineffassign: ## Make go binary ineffassign
 	go build -o bin/ineffassign github.com/gordonklaus/ineffassign
 
-bin/staticcheck:
+bin/staticcheck: ## Make go binary staticcheck
 	go build -o bin/staticcheck honnef.co/go/tools/cmd/staticcheck
 
-bin/shadow:
+bin/shadow: ## Make go binary shadow
 	go build -o bin/shadow golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
+
+.PHONY: tools ## Install all binary tools
+tools: bin/errcheck bin/goimports bin/ineffassign bin/staticcheck bin/shadow
 
 ## Clean
 
