@@ -28,7 +28,7 @@ jobs:
             tar -xf terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
             mv terraform-docs ~/bin/terraform-docs
           environment:
-            TERRAFORM_DOCS_VERSION: "0.14.0"
+            TERRAFORM_DOCS_VERSION: "0.14.1"
       - run:
           name: "Download and install go"
           command: |
