@@ -34,17 +34,19 @@ func TestTerraformSimpleExample(t *testing.T) {
 	// so it should override the existing infrastructure.
 	testName := fmt.Sprintf("terratest-terraform-module-template-simple-%s", strings.ToLower(random.UniqueId()))
 
+	tags := map[string]interface{}{
+		"Automation": "Terraform",
+		"Terratest":  "yes",
+		"Test":       "TestTerraformSimpleExample",
+	}
+
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// TerraformDir is where the terraform state is found.
 		TerraformDir: "../examples/simple",
 		// Set the variables passed to terraform
 		Vars: map[string]interface{}{
 			"test_name": testName,
-			"tags": map[string]interface{}{
-				"Automation": "Terraform",
-				"Terratest":  "yes",
-				"Test":       "TestTerraformSimpleExample",
-			},
+			"tags":      tags,
 		},
 		// Set the environment variables passed to terraform.
 		// AWS_DEFAULT_REGION is the only environment variable strictly required,

@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+#
+# This is a template. Make a copy before modifying:
+#
+#   cp .envrc.local.template .envrc.local
+#
+
+export TFENV_TERRAFORM_VERSION=0.13.7
+
+# Skip Destroy, useful during testing
+# export TT_SKIP_DESTROY=1
+
