@@ -23,7 +23,7 @@ if ! command -v terraform > /dev/null; then
 fi
 
 if [[ "${TT_VERBOSE:-}" == "1" ]]; then
-  go test -v -short -count 1 -timeout 15m "${DIR}/../test/..."
+  go test -v -short -count 1 -timeout ${TT_TIMEOUT:-15m} "${DIR}/../test/..."
 else
-  go test -short -count 1 -timeout 15m "${DIR}/../test/..."
+  go test -short -count 1 -timeout ${TT_TIMEOUT:-15m} "${DIR}/../test/..."
 fi
