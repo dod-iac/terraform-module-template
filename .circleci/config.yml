@@ -1,13 +1,13 @@
 version: '2.1'
 
 orbs:
-  terraform: circleci/terraform@1.2.0
+  terraform: circleci/terraform@3.0.0
 
 executors:
   main:
     working_directory: ~/project/
     docker:
-      - image: cimg/base:2021.03
+      - image: cimg/base:2021.07
 
 jobs:
   test:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - terraform/install:
-          terraform_version: 0.13.7
+          terraform_version: 1.0.8
       - run:
           name: "Download and install terraform-docs"
           command: |
@@ -28,7 +28,7 @@ jobs:
             tar -xf terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
             mv terraform-docs ~/bin/terraform-docs
           environment:
-            TERRAFORM_DOCS_VERSION: "0.14.1"
+            TERRAFORM_DOCS_VERSION: "0.15.0"
       - run:
           name: "Download and install go"
           command: |
