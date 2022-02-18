@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - terraform/install:
-          terraform_version: 1.0.8
+          terraform_version: 1.1.5
       - run:
           name: "Download and install terraform-docs"
           command: |
@@ -28,21 +28,21 @@ jobs:
             tar -xf terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz
             mv terraform-docs ~/bin/terraform-docs
           environment:
-            TERRAFORM_DOCS_VERSION: "0.15.0"
+            TERRAFORM_DOCS_VERSION: "0.16.0"
       - run:
           name: "Download and install go"
           command: |
             set -euo pipefail
             cd ~
             mkdir -p ~/bin
-            curl -sSLO https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz
+            curl -sSLO https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
             [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = "${GO_CHECKSUM}" ]
             tar -xzvf go${GO_VERSION}.linux-amd64.tar.gz
             sudo mv go /usr/local
             echo 'export PATH=$PATH:/usr/local/go/bin' >> $BASH_ENV
           environment:
-            GO_VERSION: "1.16.5"
-            GO_CHECKSUM: "b12c23023b68de22f74c0524f10b753e7b08b1504cb7e417eccebdd3fae49061"
+            GO_VERSION: "1.17.7"
+            GO_CHECKSUM: "02b111284bedbfa35a7e5b74a06082d18632eff824fd144312f6063943d49259"
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
       - run: make update_docs
       - run: make format_terraform
